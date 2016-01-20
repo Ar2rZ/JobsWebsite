@@ -6,14 +6,17 @@ using System.Web;
 using System.Web.Mvc;
 using JobsWebsite.Resources;
 using JobsWebsite.Helper;
+using JobsWebsite.Models;
 
 namespace JobsWebsite.Controllers
 {
     public class HomeController : BaseController
     {
+        private DatabaseContext db = new DatabaseContext();
         public ActionResult Index()
         {
-            return View();
+            var jobs = db.Jobs.ToList();
+            return View(jobs);
         }
 
         public ActionResult About()
